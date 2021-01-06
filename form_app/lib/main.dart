@@ -1,68 +1,109 @@
 import 'package:flutter/material.dart';
+// import 'package:validate/validate.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(new MaterialApp(
+      title: 'Forms in Flutter',
+      home: new LoginPage(),
+    ));
 
-class MyApp extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Retrieve Text Input',
-      home: MyCustomForm(),
-    );
-  }
+  State<StatefulWidget> createState() => new _LoginPageState();
 }
 
-// Define a custom Form widget.
-class MyCustomForm extends StatefulWidget {
-  @override
-  _MyCustomFormState createState() => _MyCustomFormState();
+class _LoginData {
+  String name = ' ';
+  String email = ' ';
 }
 
-// Define a corresponding State class.
-// This class holds data related to the Form.
-class _MyCustomFormState extends State<MyCustomForm> {
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
-  final myController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
 
-  @override
-  void initState() {
-    super.initState();
+  _LoginData _data = new _LoginData();
 
-    myController.addListener(_printLatestValue);
+  // String _validataEmail(String value){
+  //
+  //   if (!Validate.isEmail(value)) {
+  //     return 'The E-mail Address must be a valid email address.';
+  //   }
+  //
+  //   return null;
+  // }
+
+  String _validateName(String value) {
+    if (!value.contains(" ")) {
+      return "Type your valid name";
+    }
+    return null;
   }
 
-  @override
-  void dispose() {
-    // Clean up the controller when the widget is removed from the widget tree.
-    // This also removes the _printLatestValue listener.
-    myController.dispose();
-    super.dispose();
+  String _validateEmail(String value) {
+    if (!value.contains(" ")) {
+      return "Type your valid email";
+    }
+    return null;
   }
 
-  _printLatestValue() {
-    print("Second text field: ${myController.text}");
+  void submit() {
+    if (this._formKey.currentState.validate()) {
+      _formKey.currentState.save();
+
+      print('Printing the form data');
+      print('Name:${_data.name}');
+      print('Email:${_data.email}');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Retrieve Text Input'),
+    final Size screenSize = MediaQuery.of(context).size;
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Form'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              onChanged: (text) {
-                print("First text field: $text");
-              },
-            ),
-            TextField(
-              controller: myController,
-            ),
-          ],
+      body: new Container(
+        padding: new EdgeInsets.all(20.0),
+        child: new Form(
+          key: this._formKey,
+          child: new ListView(
+            children: <Widget>[
+              new TextFormField(
+                keyboardType: TextInputType.text,
+                decoration: new InputDecoration(
+                  hintText: 'Enter Yours Name...',
+                  labelText: 'Name',
+                ),
+                validator: this._validateName,
+                onSaved: (String value) {
+                  this._data.name = value;
+                },
+              ),
+              new TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                decoration: new InputDecoration(
+                  hintText: 'you@example.com',
+                  labelText: 'E-mail Address',
+                ),
+                validator: this._validateEmail,
+                onSaved: (String value) {
+                  this._data.email = value;
+                },
+              ),
+              new Container(
+                width: screenSize.width,
+                child: new RaisedButton(
+                  child: new Text(
+                    'Show Input Values',
+                    style: new TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () => this.submit(),
+                  color: Colors.blue,
+                ),
+                margin: new EdgeInsets.only(top: 20.0),
+              )
+            ],
+          ),
         ),
       ),
     );
