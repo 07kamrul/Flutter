@@ -71,14 +71,12 @@ class _DisplayValueState extends State<DisplayValue> {
                           context: context,
                           builder: (context){
                             return AlertDialog(
-                              content:Container(
-                                height: 100,
-                                child: Column(
-                                children: [
-                                  Text(nameController.text),
-                                  Text(emailController.text)
-                                ],
-                                ),
+                              content:Column(
+                                mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(nameController.text),
+                                Text(emailController.text)
+                              ],
                               ),
                             );
                           },
