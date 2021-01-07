@@ -19,9 +19,21 @@ class _DisplayValueState extends State<DisplayValue> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
 
+  var _formKey = GlobalKey<FormState>();
+  var isLoading = false;
+
+  void _submit() {
+    final isValid = _formKey.currentState.validate();
+    if (!isValid) {
+      return;
+    }
+    _formKey.currentState.save();
+  }
+
   @override
   void dispose() {
     nameController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -34,13 +46,13 @@ class _DisplayValueState extends State<DisplayValue> {
         title: Text("Form"),
       ),
       body: Padding(
-
         padding: const EdgeInsets.all(20.0),
         // child: TextField(
         //   controller: nameController,
         // ),
         //
         child: new Form(
+          key: _formKey,
           child: new ListView(
             children: <Widget>[
               new TextFormField(
@@ -50,6 +62,12 @@ class _DisplayValueState extends State<DisplayValue> {
                   hintText: 'Enter your name...',
                   labelText: 'Name',
                 ),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Enter your valid name';
+                  }
+                  return null;
+                },
               ),
               new TextFormField(
                 controller: emailController,
@@ -58,32 +76,42 @@ class _DisplayValueState extends State<DisplayValue> {
                   hintText: 'Enter your email...',
                   labelText: 'Email',
                 ),
+                validator: (emailController) {
+                  if (emailController.isEmpty ||
+                      !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(emailController)) {
+                    return 'Enter a valid email';
+                  }
+                  return null;
+                },
               ),
               new Container(
                 width: screenSize.width,
                 child: new RaisedButton(
-                    child: new Text(
+                  child: new Text(
                     'Show Input Values',
-                      style: new TextStyle(color: Colors.white),
-                    ),
-                    onPressed:(){
+                    style: new TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () {
+                    if (_formKey.currentState.validate()){
                       return showDialog(
-                          context: context,
-                          builder: (context){
-                            return AlertDialog(
-                              content:Column(
-                                mainAxisSize: MainAxisSize.min,
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(nameController.text),
                                 Text(emailController.text)
                               ],
-                              ),
-                            );
-                          },
+                            ),
+                          );
+                        },
                       );
-                    },
+                    })
+                     
+                  },
                   color: Colors.blue,
-
                 ),
               )
             ],
