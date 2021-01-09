@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class LoginPageShow extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _LoginPageState();
@@ -21,11 +20,8 @@ class _LoginPageState extends State<LoginPageShow> {
   List<String> name = List();
   List<String> email = List();
 
-
-
   @override
   Widget build(BuildContext context) {
-
     final nameField = TextFormField(
       controller: myController,
       style: TextStyle(
@@ -33,7 +29,7 @@ class _LoginPageState extends State<LoginPageShow> {
         color: Colors.redAccent,
       ),
       autofocus: false,
-      onSaved: (String value){},
+      onSaved: (String value) {},
       decoration: new InputDecoration(
         hintText: 'Enter Yours Name...',
         labelText: 'Name',
@@ -43,7 +39,6 @@ class _LoginPageState extends State<LoginPageShow> {
       ),
     );
 
-
     final emailField = TextFormField(
       controller: myController,
       style: TextStyle(
@@ -51,7 +46,7 @@ class _LoginPageState extends State<LoginPageShow> {
         color: Colors.redAccent,
       ),
       autofocus: false,
-      onSaved: (String value){},
+      onSaved: (String value) {},
       decoration: InputDecoration(
         hintText: 'Enter Yours Email Address...',
         labelText: 'E-mail Address',
@@ -61,19 +56,15 @@ class _LoginPageState extends State<LoginPageShow> {
       ),
     );
 
-
     return Scaffold(
         appBar: new AppBar(
           title: new Text('Form'),
         ),
         backgroundColor: Colors.white,
         body: Stack(
-
           children: <Widget>[
             Padding(
-              padding:
-              const EdgeInsets.only(left: 0, top: 0),
-
+              padding: const EdgeInsets.only(left: 0, top: 0),
               child: ListView.builder(
                 itemCount: name.length,
                 itemBuilder: (context, index) {
@@ -84,9 +75,7 @@ class _LoginPageState extends State<LoginPageShow> {
               ),
             ),
             Padding(
-              padding:
-              const EdgeInsets.only(right: 0, top: 0),
-
+              padding: const EdgeInsets.only(right: 0, top: 0),
               child: ListView.builder(
                 itemCount: email.length,
                 itemBuilder: (context, index) {
@@ -96,7 +85,6 @@ class _LoginPageState extends State<LoginPageShow> {
                 },
               ),
             ),
-
             Align(
               alignment: Alignment.center,
               child: Column(
@@ -114,7 +102,6 @@ class _LoginPageState extends State<LoginPageShow> {
                       });
                     },
                     color: Colors.blue,
-
                   )
                 ],
               ),
