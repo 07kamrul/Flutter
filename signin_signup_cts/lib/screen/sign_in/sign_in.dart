@@ -44,22 +44,25 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
         content: new Text(text),
     ));
   }
-  
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     _ctx = context;
+
     var loginBtn = new RaisedButton(
       onPressed: _submit,
       child: new Text("Login"),
       color: Colors.green,
     );
+
     var registerBtn = new RaisedButton(
       padding: const EdgeInsets.all(10.0),
       onPressed: _register,
       child: new Text("Register"),
       color: Colors.green,
     );
+
     var loginForm = new Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
@@ -121,7 +124,7 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
     });
     if(user.flaglogged == 'logged'){
       print("Logged");
-      Navigator.pushReplacement(context,
+      Navigator.push(context,
       MaterialPageRoute(builder: (context) => HomePage(user.name,user.username))
       );
     }else{

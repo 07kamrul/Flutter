@@ -13,11 +13,6 @@ class User{
     this.flaglogged = obj['password'];
   }
 
-/*  String get name => _name;
-  String get username => _username;
-  String get password => _password;
-  String get flaglogged => _flaglogged;*/
-
   Map<String, dynamic> toMap(){
     var map = new Map<String, dynamic>();
     map["name"] = name;

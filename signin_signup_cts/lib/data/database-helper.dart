@@ -64,12 +64,20 @@ class DatabaseHelper {
     print(user.password);
     var dbClient = await db;
     List<Map> maps = await dbClient.query(tableUser,
-        columns: [columnUserName, columnPassword],
+        columns: [columnName, columnUserName, columnPassword],
         where : "$columnUserName = ? and $columnPassword = ?",
         whereArgs: [user.username, user.password]);
     print(maps);
+    
+    maps.forEach((element) {
+      print(element);
+    });
+    
+
     if (maps.length > 0) {
       print("User Exist !!! ");
+      user.name=maps[0]['name'];
+      user.username=maps[0]['username'];
       return user;
     }else {
       return null;

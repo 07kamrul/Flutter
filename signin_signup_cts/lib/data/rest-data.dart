@@ -1,6 +1,5 @@
 import 'package:signin_signup_cts/data/database-helper.dart';
 import 'package:signin_signup_cts/models/user.dart';
-
 class RestData {
   static final BASE_URL = "";
   static final LOGIN_URL = BASE_URL + "/";
@@ -14,10 +13,10 @@ class RestData {
     userRetorno = await db.seleteUser(user);
     if (userRetorno != null) {
       flagLogged = "logged";
-      return new Future.value(new User(username:username, password:password, flaglogged:flagLogged));
+      return new Future.value(new User(username:userRetorno.username,name:userRetorno.name,password:userRetorno.password, flaglogged:flagLogged));
     } else {
       flagLogged = "not";
-      return new Future.value(new User(username:username, password:password, flaglogged:flagLogged));
+      return new Future.value(new User(username:userRetorno.username,name:userRetorno.name,password:userRetorno.password, flaglogged:flagLogged));
     }
   }
 }
