@@ -8,13 +8,14 @@ import 'package:signin_signup_cts/models/user.dart';
 class HomePage extends StatefulWidget {
   String name;
   String userName;
-  HomePage(String name, String userName){
+
+  HomePage(String name, String userName) {
     this.name = name;
     this.userName = userName;
   }
-  @override
-  _HomePageState createState() => _HomePageState(name,userName);
 
+  @override
+  _HomePageState createState() => _HomePageState(name, userName);
 }
 
 class _HomePageState extends State<HomePage> {
@@ -24,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   String name;
   String userName;
 
-  _HomePageState(String name, String userName){
+  _HomePageState(String name, String userName) {
     this.name = name;
     this.userName = userName;
   }
@@ -33,28 +34,60 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-/*    databaseHelper.seleteUser(user).then((value){
-
-    });*/
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home page'),
+        title: Text('Your Information'),
+      ),
+      body: Center(
+        child:Container(
 
+          height: 800,
+          width: 400,
+
+          child: Card(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.network('https://picsum.photos/250?image=9'),
+                Expanded(
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Text(name,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+
+                              )),
+                          Text(userName,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              )),
+                        ],
+                      ),
+                    ))
+              ],
+            ),
+            // alignment: Alignment.topCenter,
+            // child: Column(
+          ),
+        )
       ),
-      body: Container(
-        child:Column(
-          children: [
-            Text(name??''),
-            Text(userName??''),
-          ],
-        ),
+      floatingActionButton: FloatingActionButton(
+        elevation: 8.0,
+        child: Icon(Icons.add_to_photos_sharp),
+        onPressed: (){
+          print("Update your information");
+        },
       ),
+      // ),
     );
   }
 }
-
-

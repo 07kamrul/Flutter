@@ -4,7 +4,7 @@ class User{
   String password;
   String flaglogged;
 
-   User({this.name, this.username, this.password, this.flaglogged});
+  User({this.name, this.username, this.password, this.flaglogged});
 
   User.map(dynamic obj){
     this.name = obj['name'];

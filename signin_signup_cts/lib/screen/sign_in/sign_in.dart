@@ -78,14 +78,15 @@ class _LoginPageState extends State<LoginPage> implements LoginPageContract {
                   padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
                   onSaved: (value) => _email = value,
-                  decoration: new InputDecoration(labelText: "Email"),
+                  decoration: new InputDecoration(labelText: "Email",hintText: "Enter your valid email..."),
+
                 ),
               ),
               new Padding(
                   padding: const EdgeInsets.all(20.0),
                 child: new TextFormField(
                   onSaved: (value) => _password = value,
-                  decoration: new InputDecoration(labelText: "Password"),
+                  decoration: new InputDecoration(labelText: "Password",hintText: "Enter your valid password..."),
                 ),
               )
             ],

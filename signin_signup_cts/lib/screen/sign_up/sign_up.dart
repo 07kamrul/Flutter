@@ -40,7 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: new TextFormField(
                   validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _name = value,
-                  decoration: new InputDecoration(labelText: "Name:"),
+                  decoration: new InputDecoration(labelText: "Name:", hintText: "Enter your name..."),
                 ),
               ),
               new Padding(
@@ -48,7 +48,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: new TextFormField(
                   validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _username = value,
-                  decoration: new InputDecoration(labelText: "Username:"),
+                  decoration: new InputDecoration(labelText: "Username:", hintText: "Enter your username..."),
                 ),
               ),
               new Padding(
@@ -56,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: new TextFormField(
                   validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _password = value,
-                  decoration: new InputDecoration(labelText: "Password"),
+                  decoration: new InputDecoration(labelText: "Password", hintText: "Enter your password..."),
                 ),
               )
             ],
