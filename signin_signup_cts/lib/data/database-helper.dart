@@ -69,11 +69,6 @@ class DatabaseHelper {
         whereArgs: [user.username, user.password]);
     print(maps);
     
-    maps.forEach((element) {
-      print(element);
-    });
-    
-
     if (maps.length > 0) {
       print("User Exist !!! ");
       user.name=maps[0]['name'];
@@ -83,4 +78,12 @@ class DatabaseHelper {
       return null;
     }
   }
+
+  Future<int> update(User user) async {
+    var dbClient = await db;
+
+    return await dbClient.update(tableUser, user.toMap(),
+        where: '$columnUserName = ?', whereArgs: [user.username]);
+  }
+
 }
