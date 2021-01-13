@@ -12,7 +12,7 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isLoading = false;
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
-  String _name, _username, _password;
+  String _name, _email, _designation, _username, _password;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
     var loginBtn = new RaisedButton(
       onPressed: _submit,
       child: new Text("Register"),
-      color: Colors.green,
+      color: Colors.greenAccent,
     );
 
     var loginForm = new Column(
@@ -38,27 +38,35 @@ class _RegisterPageState extends State<RegisterPage> {
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
-                  validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
+                  validator: (value) =>
+                      (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _name = value,
-                  decoration: new InputDecoration(labelText: "Name:", hintText: "Enter your name..."),
+                  decoration: new InputDecoration(
+                      labelText: "Name:", hintText: "Enter your name..."),
                 ),
               ),
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
-                  validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
+                  validator: (value) =>
+                      (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _username = value,
-                  decoration: new InputDecoration(labelText: "Username:", hintText: "Enter your username..."),
+                  decoration: new InputDecoration(
+                      labelText: "Username:",
+                      hintText: "Enter your username..."),
                 ),
               ),
               new Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: new TextFormField(
-                  validator: (value) => (value.length == 0 ? 'This field is mandatory' : null),
+                  validator: (value) =>
+                      (value.length == 0 ? 'This field is mandatory' : null),
                   onSaved: (value) => _password = value,
-                  decoration: new InputDecoration(labelText: "Password", hintText: "Enter your password..."),
+                  decoration: new InputDecoration(
+                      labelText: "Password",
+                      hintText: "Enter your password..."),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -84,13 +92,14 @@ class _RegisterPageState extends State<RegisterPage> {
     ));
   }
 
-  void _submit(){
+  void _submit() {
     final form = formKey.currentState;
-    if(form.validate()){
+    if (form.validate()) {
       setState(() {
         _isLoading = true;
         form.save();
-        var user = new User(name:_name, username:_username, password:_password);
+        var user =
+            new User(name: _name, username: _username, password: _password);
         var db = new DatabaseHelper();
         db.saveUser(user);
         _isLoading = false;
@@ -98,5 +107,4 @@ class _RegisterPageState extends State<RegisterPage> {
       });
     }
   }
-
 }

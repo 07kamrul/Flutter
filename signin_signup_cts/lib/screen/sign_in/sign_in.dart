@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:signin_signup_cts/models/user.dart';
 import 'package:signin_signup_cts/screen/sign_in/sign_in_presenter.dart';
 
-import '../home_page.dart';
+import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override

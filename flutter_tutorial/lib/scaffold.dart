@@ -34,7 +34,7 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
         tooltip: 'Increment Counter',
         child: Icon(Icons.add),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       drawer: Drawer(
         elevation: 20.0,
         child: Column(

@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:signin_signup_cts/data/database-helper.dart';
 import 'package:signin_signup_cts/models/user.dart';
+import 'package:signin_signup_cts/screen/home/update_page.dart';
 
 class HomePage extends StatefulWidget {
   String name;
@@ -20,6 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DatabaseHelper databaseHelper = DatabaseHelper();
+
   User user = User();
 
   String name;
@@ -28,6 +30,16 @@ class _HomePageState extends State<HomePage> {
   _HomePageState(String name, String userName) {
     this.name = name;
     this.userName = userName;
+  }
+
+  void _updatePage() {
+    Navigator.of(context).pushNamed('/update');
+    // Navigator.push(context,
+    //     MaterialPageRoute(builder: (context) => UpdatePage(user.name)));
+  }
+
+  void _registerPage() {
+    Navigator.of(context).pushNamed('/register');
   }
 
   @override
@@ -55,8 +67,10 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     ClipRRect(
                       child: Image.asset(
-                        'assets/images/profile_picture.png', height: 150,
-                        width: 150,),
+                        'assets/images/profile_picture.png',
+                        height: 150,
+                        width: 150,
+                      ),
                     )
                   ],
                 ),
@@ -64,7 +78,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top:10),
+            padding: EdgeInsets.only(top: 10),
             height: 500,
             child: Card(
               shape: RoundedRectangleBorder(
@@ -73,7 +87,6 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-
                     new Container(
                       alignment: Alignment.center,
                       padding: EdgeInsets.only(left: 20.0, top: 20.0),
@@ -182,9 +195,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         elevation: 8.0,
         child: Icon(Icons.add_to_photos_sharp),
-        onPressed: () {
-          print("Update your information");
-        },
+        onPressed: _updatePage,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       drawer: Drawer(
@@ -195,20 +206,19 @@ class _HomePageState extends State<HomePage> {
               accountEmail: Text(name),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.grey,
-                backgroundImage: AssetImage('assets/images/profile_picture.png'),  radius: 50,
-
+                backgroundImage:
+                    AssetImage('assets/images/profile_picture.png'),
+                radius: 50,
               ),
             ),
             ListTile(
               title: new Text('Profile'),
               leading: new Icon(Icons.account_box),
             ),
-            Divider(
-              height: 0.1,
-            ),
             ListTile(
-              title: new Text('Primary'),
+              title: new Text('Register'),
               leading: new Icon(Icons.inbox),
+              onTap: _registerPage,
             ),
             ListTile(
               title: new Text('Social'),
