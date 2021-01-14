@@ -27,10 +27,8 @@ class _HomeState extends State<Home> {
             ),
             Container(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Flutter CRUD',
-                  style: TextStyle(color: Colors.white)
-                ))
+                child:
+                    Text('Flutter CRUD', style: TextStyle(color: Colors.white)))
           ],
         ),
         backgroundColor: Colors.pink,
@@ -65,8 +63,15 @@ class _HomeState extends State<Home> {
                                       backgroundImage: NetworkImage(
                                         'https://placeimg.com/640/480/any',
                                       )),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
                                   new Center(
-                                      child: new Text('Md Kamrul Hasan')),
+                                      child: new Text(
+                                    'Md Kamrul Hasan',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
                                 ],
                               ),
                             ),
@@ -106,7 +111,15 @@ class _HomeState extends State<Home> {
                                       backgroundImage: NetworkImage(
                                         'https://placeimg.com/640/480/any',
                                       )),
-                                  new Center(child: new Text('Rohmat Uddin')),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  new Center(
+                                      child: new Text(
+                                    'Rohmat Uddin',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
                                 ],
                               ),
                             ),
@@ -146,7 +159,15 @@ class _HomeState extends State<Home> {
                                       backgroundImage: NetworkImage(
                                         'https://placeimg.com/640/480/any',
                                       )),
-                                  new Center(child: new Text('Arifur Islam')),
+                                  SizedBox(
+                                    height: 30,
+                                  ),
+                                  new Center(
+                                      child: new Text(
+                                    'Arifur Islam',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
                                 ],
                               ),
                             ),
@@ -186,7 +207,14 @@ class _HomeState extends State<Home> {
                                     backgroundImage: NetworkImage(
                                       'https://placeimg.com/640/480/any',
                                     )),
-                                new Center(child: new Text('ABC')),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                new Center(
+                                    child: new Text(
+                                  'Shariful Islam',
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                )),
                               ],
                             ),
                           ),
