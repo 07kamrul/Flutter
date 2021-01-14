@@ -26,9 +26,12 @@ class _HomeState extends State<Home> {
               color: Colors.white,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: Text('Flutter CRUD'))
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Flutter CRUD',
+                  style: TextStyle(color: Colors.white)
+                ))
           ],
-
         ),
         backgroundColor: Colors.pink,
       ),
@@ -38,28 +41,166 @@ class _HomeState extends State<Home> {
         children: <Widget>[
           Container(
               height: 50,
-              child: const Card(
-                  child: Text(
-                "Kamrul Hasan",
-              ))),
-          Container(
-              height: 50,
-              child: const Card(
-                child: Text(
-                  "Rohmat Uddin",
+              child: Card(
+                // child: Text("Kamrul Hasan"),
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40)),
+                            elevation: 10,
+                            child: Container(
+                              height: 400,
+                              width: 360,
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.all(20.0),
+                                children: <Widget>[
+                                  CircleAvatar(
+                                      radius: 80,
+                                      backgroundImage: NetworkImage(
+                                        'https://placeimg.com/640/480/any',
+                                      )),
+                                  new Center(
+                                      child: new Text('Md Kamrul Hasan')),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: 300,
+                    height: 100,
+                    child: Text('Kamrul Hasan'),
+                  ),
                 ),
               )),
           Container(
               height: 50,
-              child: const Card(
-                child: Text("Rahim Joy"),
+              child: Card(
+                // child: Text("Rohmat Uddin"),
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40)),
+                            elevation: 10,
+                            child: Container(
+                              height: 400,
+                              width: 360,
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.all(20.0),
+                                children: <Widget>[
+                                  CircleAvatar(
+                                      radius: 80,
+                                      backgroundImage: NetworkImage(
+                                        'https://placeimg.com/640/480/any',
+                                      )),
+                                  new Center(child: new Text('Rohmat Uddin')),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: 300,
+                    height: 100,
+                    child: Text('Rohmat Uddin'),
+                  ),
+                ),
               )),
           Container(
               height: 50,
-              child: const Card(
-                  child: Text(
-                "Nazrul Hasan",
-              ))),
+              child: Card(
+                // child: Text("Rahim Joy"),
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40)),
+                            elevation: 10,
+                            child: Container(
+                              height: 400,
+                              width: 360,
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.all(20.0),
+                                children: <Widget>[
+                                  CircleAvatar(
+                                      radius: 80,
+                                      backgroundImage: NetworkImage(
+                                        'https://placeimg.com/640/480/any',
+                                      )),
+                                  new Center(child: new Text('Arifur Islam')),
+                                ],
+                              ),
+                            ),
+                          );
+                        });
+                  },
+                  child: Container(
+                    width: 300,
+                    height: 100,
+                    child: Text('Arifur Islam'),
+                  ),
+                ),
+              )),
+          Container(
+            height: 50,
+            child: Card(
+              // child: Text("Nazrul Hasan"),
+              child: InkWell(
+                splashColor: Colors.blue.withAlpha(30),
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Dialog(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(40)),
+                          elevation: 10,
+                          child: Container(
+                            height: 400,
+                            width: 360,
+                            child: ListView(
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.all(20.0),
+                              children: <Widget>[
+                                CircleAvatar(
+                                    radius: 80,
+                                    backgroundImage: NetworkImage(
+                                      'https://placeimg.com/640/480/any',
+                                    )),
+                                new Center(child: new Text('ABC')),
+                              ],
+                            ),
+                          ),
+                        );
+                      });
+                },
+                child: Container(
+                  width: 300,
+                  height: 100,
+                  child: Text('Shariful Islam'),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
 

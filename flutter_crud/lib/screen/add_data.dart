@@ -42,7 +42,8 @@ class _AddDataPage extends State<AddDataPage> {
   Widget build(BuildContext context) {
     var saveBtn = new RaisedButton(
       onPressed: _submit,
-      child: new Text("Login",style: new TextStyle(fontWeight: FontWeight.bold)),
+      child:
+          new Text("Login", style: new TextStyle(fontWeight: FontWeight.bold)),
       color: Colors.pink,
     );
 
@@ -65,7 +66,6 @@ class _AddDataPage extends State<AddDataPage> {
                 ),
               )),
           const Divider(
-
             color: Colors.pinkAccent,
             height: 20,
             thickness: 3,
@@ -151,11 +151,11 @@ class _AddDataPage extends State<AddDataPage> {
               color: Colors.white,
             ),
             Container(
-                padding: const EdgeInsets.all(8.0), child: Text('Add Data'))
+                padding: const EdgeInsets.all(8.0),
+                child: Text('Add Data', style: TextStyle(color: Colors.white)))
           ],
         ),
         backgroundColor: Colors.pink,
-
       ),
       key: _scaffoldKey,
       body: new Container(
