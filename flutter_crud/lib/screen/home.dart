@@ -18,9 +18,20 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Center(
-            child: Text("Flutter CRUD"),
-          )      ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            Container(
+                padding: const EdgeInsets.all(8.0), child: Text('Flutter CRUD'))
+          ],
+
+        ),
+        backgroundColor: Colors.pink,
+      ),
 
       body: ListView(
         padding: const EdgeInsets.all(8),
@@ -52,13 +63,28 @@ class _HomeState extends State<Home> {
         ],
       ),
 
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => AddDataPage()));
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: (){
+      //     Navigator.push(context, MaterialPageRoute(builder: (context) => AddDataPage()));
+      //   },
+      // ),
+      //
 
+      floatingActionButton: Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: Theme.of(context)
+              .colorScheme
+              .copyWith(secondary: Colors.pinkAccent),
+        ),
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AddDataPage()));
+          },
+        ),
+      ),
     );
   }
 }
