@@ -22,7 +22,10 @@ environment:
 
 dependencies:
   google_fonts: ^1.1.0
-  http: ^0.12.2
+  http: any
+
+  fluttertoast: any
+
 
   flutter:
     sdk: flutter
