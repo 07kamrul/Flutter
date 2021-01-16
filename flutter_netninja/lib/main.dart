@@ -15,38 +15,17 @@ class Home extends StatelessWidget{
         centerTitle: true,
         backgroundColor: Colors.red[600],
       ),
-      body: Center(
-        // child: Text("Hello Ninja",
-        //   style: TextStyle(
-        //       fontSize: 20.0,
-        //       fontWeight: FontWeight.bold,
-        //       letterSpacing: 2.0,
-        //       color: Colors.grey[600]
-        //   ),
-        // ),
-
-        // child: Image(image: AssetImage('assets/images/d3.jpeg'),),
-
-        // child: Icon(
-        //   Icons.airport_shuttle,
-        //   color: Colors.lightBlue,
-        //   size: 100.0
-        // ),
-
-        // child: FlatButton(
-        //   onPressed: (){},
-        //   child: Text("Click me"),
-        //   color: Colors.lightBlue,
-        // ),
-
-        child: RaisedButton.icon(
-            onPressed: (){},
-            icon: Icon(
-              Icons.mail
-            ),
-            label: Text("Mail Box"),
-          color: Colors.amber,
-        ),
+      // body: Container(
+      //   // padding: EdgeInsets.all(20.0),
+      //   // padding: EdgeInsets.symmetric(horizontal: 30.0,vertical: 10.0),
+      //   padding: EdgeInsets.fromLTRB(10.0, 20.0, 30.0, 40.0),
+      //   margin: EdgeInsets.all(30.0),
+      //   color: Colors.grey[400],
+      //   child: Text("Helloooo"),
+      // ),
+      body: Padding(
+        padding: EdgeInsets.all(90.0),
+        child: Text("Hello"),
 
       ),
       floatingActionButton: FloatingActionButton(
