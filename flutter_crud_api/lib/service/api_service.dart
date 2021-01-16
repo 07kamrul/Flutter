@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:html';
-
 import 'package:flutter_crud_api/model/profile.dart';
 import 'package:http/http.dart' show Client;
 
@@ -24,7 +21,7 @@ class ApiService {
       body: profileToJson(data),
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return true;
     } else {
       return false;

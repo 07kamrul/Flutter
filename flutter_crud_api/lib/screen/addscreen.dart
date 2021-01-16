@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crud_api/model/profile.dart';
 import 'package:flutter_crud_api/service/api_service.dart';
@@ -12,7 +11,6 @@ class AddScreen extends StatefulWidget {
 
   @override
   _AddScreenState createState() => _AddScreenState();
-
 }
 
 class _AddScreenState extends State<AddScreen> {
@@ -27,7 +25,6 @@ class _AddScreenState extends State<AddScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _ageController = TextEditingController();
-
 
   @override
   void initState() {
@@ -63,7 +60,6 @@ class _AddScreenState extends State<AddScreen> {
                 _buildTextFieldName(),
                 _buildTextFieldEmail(),
                 _buildTextFieldAge(),
-
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: RaisedButton(
@@ -73,17 +69,20 @@ class _AddScreenState extends State<AddScreen> {
                           : "Update Data".toUpperCase(),
                       style: TextStyle(
                         color: Colors.white,
-
                       ),
                     ),
                     onPressed: () {
-                      if (
-                      _isFieldNameValid == null || _isFieldEmailValid == null ||
-                          _isFieldAgeValid == null || !_isFieldNameValid ||
-                          !_isFieldEmailValid || !_isFieldAgeValid
-                      ) {
+                      if (_isFieldNameValid == null ||
+                          _isFieldEmailValid == null ||
+                          _isFieldAgeValid == null ||
+                          !_isFieldNameValid ||
+                          !_isFieldEmailValid ||
+                          !_isFieldAgeValid) {
                         _scaffoldState.currentState.showSnackBar(
-                          SnackBar(content: Text("Please fill all field"),),);
+                          SnackBar(
+                            content: Text("Please fill all field"),
+                          ),
+                        );
                         return;
                       }
                       setState(() => _isLoading = true);
@@ -91,22 +90,33 @@ class _AddScreenState extends State<AddScreen> {
                       String email = _emailController.text.toString();
                       int age = int.parse(_ageController.text.toString());
 
-                      Profile profile = Profile(
-                          name: name, email: email, age: age);
+                      Profile profile =
+                          Profile(name: name, email: email, age: age);
                       if (widget.profile == null) {
                         _apiService.createProfile(profile).then((isSuccess) {
                           setState(() => _isLoading = false);
                           if (isSuccess) {
                             Navigator.pop(
-                                _scaffoldState.currentState.context, true
-                            );
+                                _scaffoldState.currentState.context, true);
                           } else {
                             _scaffoldState.currentState.showSnackBar(SnackBar(
-                              content: Text("Submit data failed"),));
+                              content: Text("Submit data failed"),
+                            ));
                           }
                         });
-                      }else{
-                        _scaffoldState.currentState.showSnackBar(SnackBar(content: Text("Update data failed"),));
+                      } else {
+                        profile.id = widget.profile.id;
+                        _apiService.updateProfile(profile).then((isSuccess) {
+                          setState(() => _isLoading = false);
+                          if (isSuccess) {
+                            Navigator.pop(
+                                _scaffoldState.currentState.context, true);
+                          } else {
+                            _scaffoldState.currentState.showSnackBar(SnackBar(
+                              content: Text("Update data failed"),
+                            ));
+                          }
+                        });
                       }
                     },
                     color: Colors.orange[600],
@@ -115,40 +125,43 @@ class _AddScreenState extends State<AddScreen> {
               ],
             ),
           ),
-          _isLoading ? Stack(
-            children: <Widget>[
-              Opacity(opacity: 0.3,child: ModalBarrier(
-                dismissible: false,
-                color: Colors.grey,
-              ),
-              ),
-              Center(
-              child: CircularProgressIndicator(),
-              ),
-            ],
-          )
+          _isLoading
+              ? Stack(
+                  children: <Widget>[
+                    Opacity(
+                      opacity: 0.3,
+                      child: ModalBarrier(
+                        dismissible: false,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  ],
+                )
               : Container(),
         ],
       ),
     );
   }
 
-  Widget _buildTextFieldName(){
+  Widget _buildTextFieldName() {
     return TextFormField(
       controller: _nameController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: "Full Name",
-            errorText: _isFieldNameValid == null || _isFieldNameValid ? null: "Full name is requied",
+        errorText: _isFieldNameValid == null || _isFieldNameValid ? null : "Full name is requied",
       ),
-      onChanged: (nameValue){
-        bool isFieldValue = nameValue.trim().isEmpty;
-        if(isFieldValue != _isFieldNameValid){
-          setState(() => _isFieldNameValid = isFieldValue);
+      onChanged: (nameValue) {
+        bool isFieldValid = nameValue.trim().isNotEmpty;
+        if (isFieldValid != _isFieldNameValid) {
+          setState(() => _isFieldNameValid = isFieldValid);
         }
       },
-      validator: (_nameController){
-        if(_nameController.isEmpty){
+      validator: (_nameController) {
+        if (_nameController.isEmpty) {
           return "Please Enter your name";
         }
         return null;
@@ -156,23 +169,24 @@ class _AddScreenState extends State<AddScreen> {
     );
   }
 
-
-  Widget _buildTextFieldEmail(){
+  Widget _buildTextFieldEmail() {
     return TextFormField(
       controller: _emailController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: "Email",
-        errorText: _isFieldEmailValid == null || _isFieldEmailValid ? null: "Email is requied",
+        errorText: _isFieldEmailValid == null || _isFieldEmailValid
+            ? null
+            : "Email is requied",
       ),
-      onChanged: (emailValue){
-        bool isFieldValue = emailValue.trim().isEmpty;
-        if(isFieldValue != _isFieldEmailValid){
+      onChanged: (emailValue) {
+        bool isFieldValue = emailValue.trim().isNotEmpty;
+        if (isFieldValue != _isFieldEmailValid) {
           setState(() => _isFieldEmailValid = isFieldValue);
         }
       },
-      validator: (_emailController){
-        if(_emailController.isEmpty){
+      validator: (_emailController) {
+        if (_emailController.isEmpty) {
           return "Please Enter your email";
         }
         return null;
@@ -180,33 +194,28 @@ class _AddScreenState extends State<AddScreen> {
     );
   }
 
-
-  Widget _buildTextFieldAge(){
+  Widget _buildTextFieldAge() {
     return TextFormField(
       controller: _ageController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         labelText: "Age",
-        errorText: _isFieldAgeValid == null || _isFieldAgeValid ? null: "Age is requied",
+        errorText: _isFieldAgeValid == null || _isFieldAgeValid
+            ? null
+            : "Age is requied",
       ),
-      onChanged: (ageValue){
-        bool isFieldValue = ageValue.trim().isEmpty;
-        if(isFieldValue != _isFieldAgeValid){
+      onChanged: (ageValue) {
+        bool isFieldValue = ageValue.trim().isNotEmpty;
+        if (isFieldValue != _isFieldAgeValid) {
           setState(() => _isFieldAgeValid = isFieldValue);
         }
       },
-      validator: (_ageController){
-        if(_ageController.isEmpty){
+      validator: (_ageController) {
+        if (_ageController.isEmpty) {
           return "Please Enter your age";
         }
         return null;
       },
     );
   }
-
-
-
-
-
-
 }
