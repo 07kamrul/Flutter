@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home:Home()
-));
+void main() => runApp(MaterialApp(home: Home()));
 
-
-
-class Home extends StatelessWidget{
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,13 +19,29 @@ class Home extends StatelessWidget{
       //   color: Colors.grey[400],
       //   child: Text("Helloooo"),
       // ),
-      body: Padding(
-        padding: EdgeInsets.all(90.0),
-        child: Text("Hello"),
+      // body: Padding(
+      //   padding: EdgeInsets.all(90.0),
+      //   child: Text("Hello"),
+      //
+      // ),
 
+      body: Row(
+        children: <Widget>[
+          Text("Hello World"),
+          FlatButton(
+            onPressed: () {},
+            child: Text("Click me"),
+            color: Colors.amber,
+          ),
+          Container(
+            color: Colors.cyan,
+            padding: EdgeInsets.all(30.0),
+            child: Text("inside container"),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: () {},
         child: Text("Click"),
         backgroundColor: Colors.red,
       ),
