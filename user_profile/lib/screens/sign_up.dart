@@ -68,6 +68,9 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  bool _loaded = false;
+
+
   @override
   Widget build(BuildContext context) {
     //Image Upload
@@ -112,7 +115,24 @@ class _SignUpPageState extends State<SignUpPage> {
         // backgroundImage: new Image.asset('assets/images/dp.png'),
         backgroundColor: Colors.transparent,
         radius: 50.0,
-        child: Image.asset('assets/images/dp.png'),
+        // child: Image.asset('assets/images/dp.png'),
+        child: _image != null
+            ? ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.file(_image,
+                    width: 100, height: 100, fit: BoxFit.fitHeight),
+              )
+            : Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(50)),
+                width: 100,
+                height: 100,
+                child: Icon(
+                  Icons.camera_alt,
+                  color: Colors.grey[800],
+                ),
+              ),
       ),
     );
 
@@ -121,9 +141,27 @@ class _SignUpPageState extends State<SignUpPage> {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         new CircleAvatar(
+
           backgroundColor: Colors.transparent,
           radius: 50.0,
-          child: Image.asset('assets/images/dp.png'),
+          // child: Image.asset('assets/images/dp.png'),
+          child: _image != null
+              ? ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.file(_image,
+                      width: 100, height: 100, fit: BoxFit.fitHeight),
+                )
+              : Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(50)),
+                  width: 100,
+                  height: 100,
+                  child: Icon(
+                    Icons.camera_alt,
+                    color: Colors.grey[800],
+                  ),
+                ),
         ),
         InkWell(
           child: IconButton(
