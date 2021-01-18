@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -8,6 +11,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = new GlobalKey<FormState>();
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey _menuKey = new GlobalKey();
 
   final fullNameController = TextEditingController();
   final userNameController = TextEditingController();
@@ -44,19 +48,63 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   String dropdownvalue = 'Dhaka';
+  File _image;
+
+  _imgFromCamera() async {
+    File image = await ImagePicker.pickImage(
+        source: ImageSource.camera, imageQuality: 50);
+
+    setState(() {
+      _image = image;
+    });
+  }
+
+  _imgFromGallery() async {
+    File image = await ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 50);
+
+    setState(() {
+      _image = image;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    // var signUpBtn = new RaisedButton(
-    //   onPressed: _submit,
-    //   child: new Text(
-    //     "Login",
-    //     style: new TextStyle(
-    //       fontWeight: FontWeight.bold,
-    //     ),
-    //   ),
-    //   color: Colors.pink,
-    // );
+    //Image Upload
+    final chooseImage = new Container(
+      child: new Wrap(
+        children: <Widget>[
+          new ListTile(
+              leading: new Icon(Icons.photo_library),
+              title: new Text("Photo library"),
+              onTap: () {
+                _imgFromGallery();
+                Navigator.of(context).pop();
+              }),
+          new ListTile(
+            leading: new Icon(Icons.photo_camera),
+            title: new Text('Camera'),
+            onTap: () {
+              _imgFromCamera();
+              Navigator.of(context).pop();
+            },
+          )
+        ],
+      ),
+    );
+
+    //Popup Menu Button
+    final menuBtn = new PopupMenuButton(
+        key: _menuKey,
+        itemBuilder: (_) => <PopupMenuItem<String>>[
+              new PopupMenuItem<String>(
+                  child: const Text('Rate App'), value: 'Rate App'),
+              new PopupMenuItem<String>(
+                  child: const Text('Contact'), value: 'Contact'),
+              new PopupMenuItem<String>(
+                  child: const Text('Logout'), value: 'Logout'),
+            ],
+        onSelected: (_) {});
 
     final img = Container(
       child: new CircleAvatar(
@@ -77,28 +125,17 @@ class _SignUpPageState extends State<SignUpPage> {
           radius: 50.0,
           child: Image.asset('assets/images/dp.png'),
         ),
-
-        new IconButton(
-          icon: Icon(Icons.edit),
-          tooltip: 'Upload you image',
-
-
-          onPressed: null
-        ),
-        //
-        // new GestureDetector(
-        //   onTap: () async{
-        //     await showDialog(
-        //         context: context,
-        //         builder: (context){
-        //           AlertDialog(
-        //             content: Text('Hello'),
-        //           );
-        //         }
-        //     );
-        //   },
-        // )
-        //
+        InkWell(
+          child: IconButton(
+              icon: Icon(Icons.edit),
+              tooltip: 'Upload you image',
+              onPressed: null),
+          onTap: () async {
+            // print("Click Event");
+            return showDialog(
+                context: context, child: new AlertDialog(content: chooseImage));
+          },
+        )
       ],
     );
 
@@ -266,6 +303,7 @@ class _SignUpPageState extends State<SignUpPage> {
             )
           ],
         ),
+        actions: <Widget>[menuBtn],
         backgroundColor: Colors.pink,
       ),
       key: _scaffoldKey,
