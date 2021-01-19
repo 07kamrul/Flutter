@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_profile/screens/card_details/card_details.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -16,57 +17,56 @@ class _DashboardState extends State<Dashboard> {
         decoration: BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1)),
         child: new InkWell(
           onTap: () {
-            // print("Card popup");
+            Navigator.push(context,
+             MaterialPageRoute(builder: (context) => CardDetails(cardTitle: title, cardDetails: "Hello Card: $title",)));
+            //
             // return showDialog(
-            //     context: context, builder: (context) => Text(title));
-
-            return showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.greenAccent,
-                              borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(6)),
-                            ),
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              title,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          )
-                        ],
-                      ),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            Center(
-                                child: Icon(icon,
-                                    size: 50.0, color: Colors.black)),
-                            SizedBox(
-                              height: 40,
-                            ),
-                            Text('I liked using TermsFeed very much. '
-                                'I thought the website was easy to navigate and the instructions for generating the terms was clear.'
-                                'I even recommended you on a Facebook Group I am a member of.'),
-                            SizedBox(
-                              height: 20,
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        TextButton(
-                          child: Text('close'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ));
+            //     context: context,
+            //     builder: (context) => AlertDialog(
+            //           title: Row(
+            //             mainAxisAlignment: MainAxisAlignment.center,
+            //             children: [
+            //               Container(
+            //                 decoration: BoxDecoration(
+            //                   color: Colors.greenAccent,
+            //                   borderRadius: BorderRadius.only(
+            //                       bottomRight: Radius.circular(6)),
+            //                 ),
+            //                 padding: const EdgeInsets.all(8.0),
+            //                 child: Text(
+            //                   title,
+            //                   style: TextStyle(color: Colors.black),
+            //                 ),
+            //               )
+            //             ],
+            //           ),
+            //           content: SingleChildScrollView(
+            //             child: ListBody(
+            //               children: <Widget>[
+            //                 Center(
+            //                     child: Icon(icon,
+            //                         size: 50.0, color: Colors.black)),
+            //                 SizedBox(
+            //                   height: 40,
+            //                 ),
+            //                 Text('I liked using TermsFeed very much. '
+            //                     'I thought the website was easy to navigate and the instructions for generating the terms was clear.'
+            //                     'I even recommended you on a Facebook Group I am a member of.'),
+            //                 SizedBox(
+            //                   height: 20,
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           actions: <Widget>[
+            //             TextButton(
+            //               child: Text('close'),
+            //               onPressed: () {
+            //                 Navigator.of(context).pop();
+            //               },
+            //             ),
+            //           ],
+            //         ));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -203,7 +203,46 @@ class _DashboardState extends State<Dashboard> {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        color: Colors.pink,
+        height: 30,
+        child: Card(
+          color: Colors.pink,
+          child: Center(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text("Hello"),
+          )),
+        ),
+      ),
+
+      // //Drawer
       drawer: drawer,
     );
   }
 }
+//
+//
+//
+//
+//
+// class ItemDetails extends StatelessWidget {
+//   // Declare a field that holds the Todo.
+//   final Dashboard dashboard;
+//
+//   // In the constructor, require a Todo.
+//   DetailScreen({Key key, @required this.todo}) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     // Use the Todo to create the UI.
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(dashboard.title),
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.all(16.0),
+//         child: Text(dashboard.description),
+//       ),
+//     );
+//   }
+// }
