@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = new GlobalKey<FormState>();
+  bool _isHidden = true;
 
   void _submit() {
     final form = _formKey.currentState;
@@ -18,6 +19,12 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => Dashboard()));
     }
+  }
+
+  void showPassword(){
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 
   @override
@@ -44,11 +51,20 @@ class _LoginPageState extends State<LoginPage> {
     );
     final password = TextFormField(
       autofocus: false,
-      obscureText: true,
+      obscureText: _isHidden,
       decoration: InputDecoration(
           icon: Icon(Icons.lock),
           labelText: 'Password',
-          contentPadding: EdgeInsets.fromLTRB(20.0, 12.0, 20.0, 12.0)),
+          hintText: "Enter your password...",
+          contentPadding: EdgeInsets.fromLTRB(20.0, 12.0, 20.0, 12.0),
+        suffix: InkWell(
+          onTap: showPassword,
+          child: Icon(
+            _isHidden ? Icons.visibility : Icons.visibility_off,
+            color: Colors.grey,
+          ),
+        )
+      ),
       validator: (value) {
         if (value.isEmpty) {
           return 'Please enter valid username';

@@ -15,7 +15,59 @@ class _DashboardState extends State<Dashboard> {
       child: Container(
         decoration: BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1)),
         child: new InkWell(
-          onTap: () {},
+          onTap: () {
+            // print("Card popup");
+            // return showDialog(
+            //     context: context, builder: (context) => Text(title));
+
+            return showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.greenAccent,
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(6)),
+                            ),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              title,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          )
+                        ],
+                      ),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            Center(
+                                child: Icon(icon,
+                                    size: 50.0, color: Colors.black)),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Text('I liked using TermsFeed very much. '
+                                'I thought the website was easy to navigate and the instructions for generating the terms was clear.'
+                                'I even recommended you on a Facebook Group I am a member of.'),
+                            SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: Text('close'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ));
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
