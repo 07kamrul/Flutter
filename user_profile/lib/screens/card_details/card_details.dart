@@ -18,9 +18,9 @@ class _CardDetailsState extends State<CardDetails> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.cardTitle),
-        actions: [
-          IconButton(icon: const Icon(Icons.more_vert_rounded), onPressed: (){})
-        ],
+        backgroundColor: Colors.pink,
+
+
       ),
       body: Center(child: Text("${widget.cardDetails}")),
     );

@@ -470,19 +470,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
     return new Scaffold(
       appBar: new AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.account_box),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Sign Up",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
+        title: Center(child: Text("Sign Up")),
+
         backgroundColor: Colors.pink,
       ),
       key: _scaffoldKey,

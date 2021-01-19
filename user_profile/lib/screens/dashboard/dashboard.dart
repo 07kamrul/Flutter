@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_profile/screens/card_details/card_details.dart';
+import 'package:intl/intl.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final GlobalKey _menuKey = new GlobalKey();
 
+  static final DateTime now = DateTime.now();
+
   Card makeDashboardItem(String title, IconData icon) {
     return Card(
       elevation: 1.0,
@@ -17,8 +20,13 @@ class _DashboardState extends State<Dashboard> {
         decoration: BoxDecoration(color: Color.fromRGBO(220, 220, 220, 1)),
         child: new InkWell(
           onTap: () {
-            Navigator.push(context,
-             MaterialPageRoute(builder: (context) => CardDetails(cardTitle: title, cardDetails: "Hello Card: $title",)));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CardDetails(
+                          cardTitle: title,
+                          cardDetails: "Hello $title",
+                        )));
             //
             // return showDialog(
             //     context: context,
@@ -169,22 +177,10 @@ class _DashboardState extends State<Dashboard> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.dashboard),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Dashboard",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
+        title: Center(child: Text("Dashboard")),
+        actions: [menuBtn],
         elevation: .1,
         backgroundColor: Colors.pink,
-        actions: <Widget>[menuBtn],
       ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 1.0),
@@ -205,13 +201,27 @@ class _DashboardState extends State<Dashboard> {
       ),
       bottomNavigationBar: Container(
         color: Colors.pink,
-        height: 30,
-        child: Card(
-          color: Colors.pink,
-          child: Center(child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text("Hello"),
-          )),
+        height: 50,
+        child: Center(
+          child: Text(
+            "Date: " +
+                now.day.toString() +
+                "-" +
+                now.month.toString() +
+                "-" +
+                now.year.toString() +
+                "  |  Time: " +
+                now.hour.toString() +
+                ":" +
+                now.minute.toString() +
+                ":" +
+                now.second.toString(),
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+            ),
+          ),
         ),
       ),
 
@@ -220,29 +230,3 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 }
-//
-//
-//
-//
-//
-// class ItemDetails extends StatelessWidget {
-//   // Declare a field that holds the Todo.
-//   final Dashboard dashboard;
-//
-//   // In the constructor, require a Todo.
-//   DetailScreen({Key key, @required this.todo}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     // Use the Todo to create the UI.
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(dashboard.title),
-//       ),
-//       body: Padding(
-//         padding: EdgeInsets.all(16.0),
-//         child: Text(dashboard.description),
-//       ),
-//     );
-//   }
-// }

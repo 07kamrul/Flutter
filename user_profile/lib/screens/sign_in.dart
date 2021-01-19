@@ -100,19 +100,21 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.login),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Login",
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        ),
+        // title: Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: [
+        //     Icon(Icons.login),
+        //     Container(
+        //       padding: const EdgeInsets.all(8.0),
+        //       child: Text(
+        //         "Login",
+        //         style: TextStyle(color: Colors.white),
+        //       ),
+        //     )
+        //   ],
+        // ),
+      title: Center(child: Text("Login")),
+
         backgroundColor: Colors.pink,
       ),
       body: new Container(
