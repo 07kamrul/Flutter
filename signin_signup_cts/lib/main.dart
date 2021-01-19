@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Login App',
-        home: new LoginPage(),
+        home: new HomePage('', ''),
         routes: <String, WidgetBuilder>{
           '/login': (BuildContext context) => new LoginPage(),
           '/home': (BuildContext context) => new HomePage('', ''),

@@ -30,6 +30,9 @@ dependencies:
   cupertino_icons: ^1.0.0
   image_picker: any
 
+  material_design_icons_flutter: any
+
+
 
 dev_dependencies:
   flutter_test:

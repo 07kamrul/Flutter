@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_profile/screens/dashboard.dart';
+import 'package:user_profile/screens/sign_in.dart';
 import 'package:user_profile/screens/sign_up.dart';
 
 void main() =>  runApp(MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget{
         scaffoldBackgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      home: SignUpPage(),
+      home: LoginPage(),
     );
   }
 }
