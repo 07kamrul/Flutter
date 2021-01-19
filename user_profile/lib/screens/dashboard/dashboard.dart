@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:user_profile/screens/card_details/card_details.dart';
+import 'dart:async';
 import 'package:intl/intl.dart';
 
 class Dashboard extends StatefulWidget {
@@ -10,7 +11,37 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   final GlobalKey _menuKey = new GlobalKey();
 
-  static final DateTime now = DateTime.now();
+  // DateTime now = DateTime.now();
+  String _timeString;
+  String _dateString;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
+    Timer.periodic(Duration(seconds: 1), (Timer t) => _getDate());
+
+  }
+
+  void _getTime() {
+    final String formattedTime =
+        DateFormat('kk:mm:ss').format(DateTime.now()).toString();
+
+    setState(() {
+      _timeString = formattedTime;
+      print(_timeString);
+    });
+  }
+
+  void _getDate() {
+    final String formattedDate =
+    DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+
+    setState(() {
+      _dateString = formattedDate;
+    });
+  }
 
   Card makeDashboardItem(String title, IconData icon) {
     return Card(
@@ -27,54 +58,6 @@ class _DashboardState extends State<Dashboard> {
                           cardTitle: title,
                           cardDetails: "Hello $title",
                         )));
-            //
-            // return showDialog(
-            //     context: context,
-            //     builder: (context) => AlertDialog(
-            //           title: Row(
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: [
-            //               Container(
-            //                 decoration: BoxDecoration(
-            //                   color: Colors.greenAccent,
-            //                   borderRadius: BorderRadius.only(
-            //                       bottomRight: Radius.circular(6)),
-            //                 ),
-            //                 padding: const EdgeInsets.all(8.0),
-            //                 child: Text(
-            //                   title,
-            //                   style: TextStyle(color: Colors.black),
-            //                 ),
-            //               )
-            //             ],
-            //           ),
-            //           content: SingleChildScrollView(
-            //             child: ListBody(
-            //               children: <Widget>[
-            //                 Center(
-            //                     child: Icon(icon,
-            //                         size: 50.0, color: Colors.black)),
-            //                 SizedBox(
-            //                   height: 40,
-            //                 ),
-            //                 Text('I liked using TermsFeed very much. '
-            //                     'I thought the website was easy to navigate and the instructions for generating the terms was clear.'
-            //                     'I even recommended you on a Facebook Group I am a member of.'),
-            //                 SizedBox(
-            //                   height: 20,
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           actions: <Widget>[
-            //             TextButton(
-            //               child: Text('close'),
-            //               onPressed: () {
-            //                 Navigator.of(context).pop();
-            //               },
-            //             ),
-            //           ],
-            //         ));
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -204,18 +187,20 @@ class _DashboardState extends State<Dashboard> {
         height: 50,
         child: Center(
           child: Text(
-            "Date: " +
-                now.day.toString() +
-                "-" +
-                now.month.toString() +
-                "-" +
-                now.year.toString() +
-                "  |  Time: " +
-                now.hour.toString() +
-                ":" +
-                now.minute.toString() +
-                ":" +
-                now.second.toString(),
+            // "Date: " +
+            //     now.day.toString() +
+            //     "-" +
+            //     now.month.toString() +
+            //     "-" +
+            //     now.year.toString() +
+            //     "  |  Time: " +
+            //     now.hour.toString() +
+            //     ":" +
+            //     now.minute.toString() +
+            //     ":" +
+            //     now.second.toString(),
+
+            "Date: "+_dateString.toString()+"   |   "+"Time: "+_timeString.toString(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
