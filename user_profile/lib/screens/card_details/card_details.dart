@@ -58,9 +58,11 @@ class _CardDetailsState extends State<CardDetails> {
                 size: 100,
               ),
             ),
+
             SizedBox(
-              height: 20,
+              height: 40,
             ),
+
             new Container(
               child: Text(widget.cardTitle),
             ),

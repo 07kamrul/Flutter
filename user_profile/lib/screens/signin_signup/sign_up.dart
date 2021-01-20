@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:user_profile/screens/sign_in.dart';
+import 'package:user_profile/screens/signin_signup/sign_in.dart';
 
 enum ChooseYourGender { male, female, others }
 
