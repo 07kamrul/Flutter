@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_profile/screens/card_details/card_details.dart';
 import 'dart:async';
 import 'package:intl/intl.dart';
+import 'package:user_profile/screens/dashboard/components/drawer.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -15,13 +16,15 @@ class _DashboardState extends State<Dashboard> {
   String _timeString;
   String _dateString;
 
+  String descriptions =
+      "Flutter is an open-source UI software development kit created by Google. It is used to develop applications for Android, iOS, Linux, Mac, Windows, Google Fuchsia,[4] and the web from a single codebase. The first version of Flutter was known as codename and ran on the Android operating system. It was unveiled at the 2015 Dart developer summit,[6] with the stated intent of being able to render consistently at 120 frames per second.[7] During the keynote of Google Developer Days in Shanghai, Google announced Flutter Release Preview 2, which is the last big release before Flutter 1.0. On December 4, 2018, Flutter 1.0 was released at the Flutter Live event, denoting the first  version of the Framework. On December 11, 2019, Flutter 1.12 was released at the Flutter Interactive event. On May 6, 2020, the Dart SDK in version 2.8 and the Flutter in version 1.17.0 were released, where support was added to the Metal API, improving performance on iOS devices (approximately 50%), new Material widgets, and new network tracking.";
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getDate());
-
   }
 
   void _getTime() {
@@ -30,13 +33,13 @@ class _DashboardState extends State<Dashboard> {
 
     setState(() {
       _timeString = formattedTime;
-      print(_timeString);
+      // print(_timeString);
     });
   }
 
   void _getDate() {
     final String formattedDate =
-    DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
+        DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
 
     setState(() {
       _dateString = formattedDate;
@@ -56,7 +59,8 @@ class _DashboardState extends State<Dashboard> {
                 MaterialPageRoute(
                     builder: (context) => CardDetails(
                           cardTitle: title,
-                          cardDetails: "Hello $title",
+                          cardDetails: descriptions,
+                          cardIcon: icon,
                         )));
           },
           child: Column(
@@ -98,65 +102,6 @@ class _DashboardState extends State<Dashboard> {
             ],
         onSelected: (_) {});
 
-    final drawer = Drawer(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountName: Text("Md Kamrul Hasan"),
-            accountEmail: Text("mdkamrulhasanewu@gmail.com"),
-            decoration: BoxDecoration(
-              color: Colors.pink,
-            ),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.transparent,
-              radius: 50.0,
-              backgroundImage: AssetImage('assets/images/logo.png'),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.home),
-            title: Text("Home"),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.account_circle_rounded),
-            title: Text("Profile"),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.login),
-            title: Text("Login"),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.logout),
-            title: Text("Logout"),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          Expanded(
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: ListTile(
-                leading: Icon(Icons.settings),
-                title: Text("Settings"),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
 
     return Scaffold(
       appBar: AppBar(
@@ -200,7 +145,11 @@ class _DashboardState extends State<Dashboard> {
             //     ":" +
             //     now.second.toString(),
 
-            "Date: "+_dateString.toString()+"   |   "+"Time: "+_timeString.toString(),
+            "Date: " +
+                _dateString.toString() +
+                "   |   " +
+                "Time: " +
+                _timeString.toString(),
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.white,
@@ -211,7 +160,8 @@ class _DashboardState extends State<Dashboard> {
       ),
 
       // //Drawer
-      drawer: drawer,
+      // drawer: leftImagedrawer,
+      drawer: rightImageDrawer,
     );
   }
 }
