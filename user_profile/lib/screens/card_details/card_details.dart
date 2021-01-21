@@ -52,6 +52,7 @@ class _CardDetailsState extends State<CardDetails> {
 
             new Container(
               alignment: Alignment.topCenter,
+              color: Colors.lightBlueAccent,
               child: Icon(
                 widget.cardIcon,
                 color: Colors.grey,
@@ -59,19 +60,25 @@ class _CardDetailsState extends State<CardDetails> {
               ),
             ),
 
-            SizedBox(
-              height: 40,
-            ),
 
             new Container(
+              alignment: Alignment.center,
+              color: Colors.pinkAccent,
+              height: 100,
+
               child: Text(widget.cardTitle),
             ),
-            SizedBox(
-              height: 20,
-            ),
+
             new Expanded(
-              child: discrip,
-            )
+              child: SafeArea(
+                child: SizedBox.expand(
+                  child: Card(
+                    color: Colors.greenAccent,
+                    child: discrip,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -29,7 +29,21 @@ class _DashboardState extends State<Dashboard> {
       "the Framework. On December 11, 2019, Flutter 1.12 was released at the Flutter Interactive "
       "event. On May 6, 2020, the Dart SDK in version 2.8 and the Flutter in version 1.17.0 were"
       " released, where support was added to the Metal API, improving performance on iOS devices "
-      "(approximately 50%), new Material widgets, and new network tracking.";
+      "(approximately 50%), new Material widgets, and new network tracking. Dart platform Flutter "
+      "apps are written in the Dart language and make use of many of the language's more advanced "
+      "features.[9]  On Windows, macOS, and Linux[10] Flutter runs in the Dart virtual machine, which"
+      " features a just-in-time execution engine. While writing and debugging an app, Flutter uses Just"
+      " In Time compilation, allowing for hot reload, with which modifications to source files can be i"
+      "njected into a running application. Flutter extends this with support for stateful hot reload, where "
+      "in most cases changes to source code are reflected immediately in the running app without requiring "
+      "a restart or any loss of state.[11] Release versions of Flutter apps are compiled with ahead-of-time "
+      "(AOT) compilation on both Android and iOS,[12] making Flutter's high performance on mobile devices possible."
+      "Flutter engine Flutter's engine, written primarily in C++, provides low-level rendering support using Google's "
+      "Skia graphics library. Additionally, it interfaces with platform-specific SDKs such as those provided by "
+      "Android and iOS.[9] The Flutter Engine is a portable runtime for hosting Flutter applications. It implements "
+      "Flutter's core libraries, including animation and graphics, file and network I/O, accessibility support, plugin "
+      "architecture, and a Dart runtime and compile toolchain. Most developers interact with Flutter via the Flutter "
+      "Framework, which provides a reactive framework and a set of platform, layout, and foundation widgets.";
 
   @override
   void initState() {
@@ -37,7 +51,6 @@ class _DashboardState extends State<Dashboard> {
 
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getTime());
     Timer.periodic(Duration(seconds: 1), (Timer t) => _getDate());
-
   }
 
   void _getTime() {
@@ -114,7 +127,6 @@ class _DashboardState extends State<Dashboard> {
                   child: const Text('Logout'), value: 'Logout'),
             ],
         onSelected: (_) {});
-
 
     return Scaffold(
       appBar: AppBar(
