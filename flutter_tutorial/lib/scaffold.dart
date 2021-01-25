@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'ephemeral_state.dart';
+
 class ScaffoldPage extends StatefulWidget {
   ScaffoldPage({Key key}) : super(key: key);
 
@@ -10,6 +12,13 @@ class ScaffoldPage extends StatefulWidget {
 
 class _ScaffoldPageState extends State<ScaffoldPage> {
   int _count = 0;
+
+
+  void _performEphemeralStatePage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => EphemeralStatePage()));
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +57,9 @@ class _ScaffoldPageState extends State<ScaffoldPage> {
               ),
             ),
             ListTile(
-              title: new Text("Inbox"),
+              title: new Text("Ephemeral State"),
               leading: new Icon(Icons.mail),
+              onTap: _performEphemeralStatePage,
             ),
             ListTile(
               title: new Text("Primary"),
