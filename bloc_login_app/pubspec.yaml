@@ -1,5 +1,5 @@
-name: bloc_pattern
-description: A new Flutter application.
+name: bloc_login_app
+description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -21,13 +21,11 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+
+  meta: any
+  
   flutter:
     sdk: flutter
-
-  stream: any
-
-  bloc: any
-
 
 
   # The following adds the Cupertino Icons font to your application.
