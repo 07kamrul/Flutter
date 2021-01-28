@@ -42,29 +42,28 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
-          if (state.wasIncremented == true) {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text('Incremented!'),
-              duration: Duration(milliseconds: 300),
-            ));
-          }
-          else if (state.wasIncremented == false) {
-            Scaffold.of(context).showSnackBar(SnackBar(
-              content: Text('Decremented!'),
-              duration: Duration(milliseconds: 300),
-            ));
-          }
-        },
-        child: Center(
+      body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
                 'You have pushed the button this many times:',
               ),
-              BlocBuilder<CounterCubit, CounterState>(
+              BlocConsumer<CounterCubit, CounterState>(
+                listener: (context, state) {
+                  if (state.wasIncremented == true) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Incremented!'),
+                      duration: Duration(milliseconds: 300),
+                    ));
+                  }
+                  else if (state.wasIncremented == false) {
+                    Scaffold.of(context).showSnackBar(SnackBar(
+                      content: Text('Decremented!'),
+                      duration: Duration(milliseconds: 300),
+                    ));
+                  }
+                },
                 builder: (context, state) {
                   if (state.counterValue < 0) {
                     return Text(
@@ -116,7 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Increment',
