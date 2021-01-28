@@ -14,10 +14,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Bloc Pattern',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.pink,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: MyHomePage(title: 'Bloc Pattern Home Page'),
+        home: BlocProvider<CounterCubit>(
+          create: (context) => CounterCubit(),
+          child: MyHomePage(title: 'Bloc Pattern Home Page'),
+        )
       ),
     );
   }
@@ -39,28 +42,83 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              'This is were the counter value should be displayed',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(onPressed: ,)
-              ],
-            )
-          ],
+      body: BlocListener<CounterCubit, CounterState>(
+        listener: (context, state) {
+          if (state.wasIncremented == true) {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text('Incremented!'),
+              duration: Duration(milliseconds: 300),
+            ));
+          }
+          else if (state.wasIncremented == false) {
+            Scaffold.of(context).showSnackBar(SnackBar(
+              content: Text('Decremented!'),
+              duration: Duration(milliseconds: 300),
+            ));
+          }
+        },
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              BlocBuilder<CounterCubit, CounterState>(
+                builder: (context, state) {
+                  if (state.counterValue < 0) {
+                    return Text(
+                      'Negative No: ' + state.counterValue.toString(),
+                      style: Theme.of(context).textTheme.headline4,
+                    );
+                  } else if (state.counterValue != 0 &&
+                      state.counterValue % 2 == 0) {
+                    return Text(
+                      'YAAH ' + state.counterValue.toString(),
+                      style: Theme.of(context).textTheme.headline4,
+                    );
+                  } else if (state.counterValue == 7) {
+                    return Text(
+                      'Birthday ' + state.counterValue.toString(),
+                      style: Theme.of(context).textTheme.headline4,
+                    );
+                  } else {
+                    return Text(
+                      'Positive No: ' + state.counterValue.toString(),
+                      style: Theme.of(context).textTheme.headline4,
+                    );
+                  }
+                },
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      BlocProvider.of<CounterCubit>(context).decrement();
+                    },
+                    tooltip: 'Decrement',
+                    child: Icon(Icons.remove),
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      // context.bloc<CounterCubit>().increament();
+                      BlocProvider.of<CounterCubit>(context).increament();
+                    },
+                    tooltip: 'Increment',
+                    child: Icon(Icons.add),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: ,
+        onPressed: () {},
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
