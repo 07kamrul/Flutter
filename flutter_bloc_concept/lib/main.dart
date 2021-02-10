@@ -3,6 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_concept/cubit/counter_cubit.dart';
 
 void main() {
+  final CounterState counterState1 = CounterState(counterValue: 1);
+  final CounterState counterState2 = CounterState(counterValue: 1);
+  print(counterState1 == counterState2);
+
   runApp(MyApp());
 }
 
@@ -71,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 } else if (state.counterValue != 0 &&
                     state.counterValue % 2 == 0) {
                   return Text(
-                    'YAAH ' + state.counterValue.toString(),
+                    'Positive Even ' + state.counterValue.toString(),
                     style: Theme.of(context).textTheme.headline4,
                   );
                 } else if (state.counterValue == 7) {
@@ -81,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 } else {
                   return Text(
-                    'Positive No: ' + state.counterValue.toString(),
+                    'Positive Odd: ' + state.counterValue.toString(),
                     style: Theme.of(context).textTheme.headline4,
                   );
                 }
